@@ -1,12 +1,13 @@
 class Controller{
     constructor(conf){
         this.intervalCreate=conf.intervalCreate
-        this.downfallSpeed=conf.downfallSpeed
+        this.controlToRemoveTimeSnow=conf.controlToRemoveTimeSnow
+        this.downfallSpeed=10
         this.windConf=conf.windConf
         this.contAll=0
         //Methods
         this.animation(this.intervalCreate);
-        this.wind();
+        this.wind(this.windConf);
         this.restart(this.intervalCreate)
     }
     restart(downfallSpeed){
@@ -23,7 +24,7 @@ class Controller{
             att.value="objectW"
              elemnt.setAttributeNode(att)
              document.body.appendChild(elemnt)
-             new Snow(elemnt)
+             new Snow(elemnt,this.controlToRemoveTimeSnow)
              this.contAll>10?this.control(loop,this.intervalCreate):this.contAll++
      },interval)
     }
