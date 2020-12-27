@@ -1,12 +1,13 @@
 //CONFIGURAÇÃO
 const CONFIG={
-    choice:"neve",
-    intervalCreate:900,// Milliseconds
-    creationPause:10000,
+    choice:"neve",//Only snow has been mounted so far
+    intervalCreate:1000,// Milliseconds
+    creationPause:10000,// Milliseconds
     removeSnowDuration:2000,// Milliseconds
     windConf:{
         wind:true,
-        windDirection:1// 1 = left || -1 = right
+        windDirection:1,// 1 = left || -1 = right
+        windSpeed:0.5
     }
 }
 //-----------------------------------------------------

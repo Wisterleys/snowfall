@@ -6,18 +6,19 @@ class Snow{
     offsetTop: 8
     offsetWidth:
     */
-    constructor(element,removeSnowDuration=20000){
+    constructor(element,removeSnowDuration=20000,x,y){
         this.element=element;
         this.removeSnowDuration=removeSnowDuration
         this.color="rgb(255,255,255)";
         this.interval=10
+        this.x=x
+        this.y=y
         this.body = [window.innerWidth,window.innerHeight];
         this.receives()
         this.loop(this.interval,this.removeSnowDuration)
     }
     receives(){
-        this.element.style=`position:absolute;top:${0};left:${Math.random() * (95 - 1) + 1}%;background:${this.color};width:8px;height:8px;border-radius:360px;`
-        //this.element.left=this.element.offsetLeft;
+        this.element.style=`position:absolute;top:${this.y};left:${this.x}%;background:${this.color};width:8px;height:8px;border-radius:360px;`
     }
     removeEl(){
         this.element.remove()

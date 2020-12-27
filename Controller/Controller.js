@@ -22,25 +22,25 @@ class Controller{
             att.value="objectW"
              elemnt.setAttributeNode(att)
              document.body.appendChild(elemnt)
-             new Snow(elemnt,this.removeSnowDuration)
+             new Snow(elemnt,this.removeSnowDuration,Math.random() * (95 - 1) + 1,0)
      },interval)
     }
     
-    wind(windDirection="left",yes=false){
-        if(yes){
+    wind(conf){
+        if(conf.wind){
             let cont=0;
-            let direction =windDirection=="left"?1:-1
+            let direction =conf.windDirection
             let loop = setInterval(() => {
                 if(document.querySelectorAll(".objectW").length){
                 document.querySelectorAll(".objectW").forEach(e=>{
                     if(e.offsetTop+e.offsetHeight<window.innerHeight){
-                        e.style.left=(e.offsetLeft+direction)+"px"
+                        e.style.left=(e.offsetLeft+direction)+conf.windSpeed+"px"
                     }
                     
                 })
             }
             cont++;
-            if(cont>1000){clearInterval(loop);cont=0;setTimeout(()=>{wind(windDirection,yes)},10000)}
+            if(cont>1000){clearInterval(loop);cont=0;setTimeout(()=>{this.wind(this.windConf)},10000)}
             }, 10);
         }
     }
