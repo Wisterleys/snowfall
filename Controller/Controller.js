@@ -5,6 +5,7 @@ class Controller{
         this.removeSnowDuration=conf.removeSnowDuration
         this.body =[window.innerWidth,window.innerHeight]
         this.downfallSpeed=10
+        this.windStop=false
         this.windConf=conf.windConf
         //Methods
         this.animation(this.intervalCreate,this.removeSnowDuration,this.body,this.windConf);
@@ -27,7 +28,7 @@ class Controller{
     animation(interval,removeSnowDuration=false,body=false,wind=false){
         setInterval(()=>{
              new Snow(this.createElement(),removeSnowDuration,body,Math.random() * (95 - 1) + 1,0)
-             wind.wind?new Snow(this.createElement(),removeSnowDuration,body,wind.windDirection==1?10:body[0],Math.random() * (95 - 1) + 1):0
+             wind.wind&&!this.windStop?new Snow(this.createElement(),removeSnowDuration,body,wind.windDirection==1?1:95,Math.random() * (95 - 1) + 1):0
      },interval)
     }
     
@@ -39,13 +40,13 @@ class Controller{
                 if(document.querySelectorAll(".objectW").length){
                 document.querySelectorAll(".objectW").forEach(e=>{
                     if(e.offsetTop+e.offsetHeight<window.innerHeight){
-                        e.style.left=(e.offsetLeft+direction)+conf.windSpeed+"px"
+                        e.style.left=direction<0?(e.offsetLeft+direction)-conf.windSpeed+"px":(e.offsetLeft+direction)+conf.windSpeed+"px"
                     }
                     
                 })
             }
             cont++;
-            if(cont>1000){clearInterval(loop);cont=0;setTimeout(()=>{this.wind(this.windConf)},10000)}
+            if(cont>1000){clearInterval(loop);this.windStop=true;cont=0;setTimeout(()=>{this.wind(this.windConf);this.windStop=false;},10000)}
             }, 10);
         }
     }
