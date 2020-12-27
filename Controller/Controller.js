@@ -1,40 +1,31 @@
 class Controller{
     constructor(conf){
         this.intervalCreate=conf.intervalCreate
-        this.controlToRemoveTimeSnow=conf.controlToRemoveTimeSnow
+        this.creationPause=conf.creationPause
+        this.removeSnowDuration=conf.removeSnowDuration
         this.downfallSpeed=10
         this.windConf=conf.windConf
-        this.contAll=0
         //Methods
         this.animation(this.intervalCreate);
         this.wind(this.windConf);
-        this.restart(this.intervalCreate)
+        this.restart()
     }
-    restart(downfallSpeed){
+    restart(){
         window.addEventListener("focus",e=>{
             document.querySelector(".objectW")?document.querySelectorAll(".objectW").forEach(e=>e.remove()):0
-            this.animation(downfallSpeed);
-            this.wind();
         })
     }
     animation(interval){
-        let loop = setInterval(()=>{
+        setInterval(()=>{
             let elemnt=document.createElement("div")
             let att =document.createAttribute("class")
             att.value="objectW"
              elemnt.setAttributeNode(att)
              document.body.appendChild(elemnt)
-             new Snow(elemnt,this.controlToRemoveTimeSnow)
-             this.contAll>10?this.control(loop,this.intervalCreate):this.contAll++
+             new Snow(elemnt,this.removeSnowDuration)
      },interval)
     }
-    control(loop,timeout){
-        clearInterval(loop)
-        this.contAll=0
-        setTimeout(() => {
-            this.animation(this.intervalCreate)
-        }, timeout);
-    }
+    
     wind(windDirection="left",yes=false){
         if(yes){
             let cont=0;
