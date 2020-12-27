@@ -1,13 +1,13 @@
 //CONFIGURAÇÃO
 const CONFIG={
     choice:"neve",
-    intervalCreate:1000,// Milliseconds
-    downfallSpeed:1000// Milliseconds
+    intervalCreate:5000,// Milliseconds
+    downfallSpeed:1000,// Milliseconds
+    windConf:{
+        wind:true,
+        windDirection:1// 1 = left || -1 = right
+    }
 }
-let contAll=0
-//VENTO
-let yes=true;
-let windDirection="left";//Qualquer valor diferente de left será right
 //-----------------------------------------------------
 
 new Controller(CONFIG)

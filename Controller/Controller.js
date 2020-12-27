@@ -1,12 +1,20 @@
 class Controller{
-    constructor(conf={choice:"neve",intervalCreate:2000,downfallSpeed:1000}){
-        this.intervalCreate=conf.intervalCreate
+    constructor(conf){
         this.intervalCreate=conf.intervalCreate
         this.downfallSpeed=conf.downfallSpeed
-        this.contAll=0;
+        this.windConf=conf.windConf
+        this.contAll=0
         //Methods
-        this.animation(this.downfallSpeed);
+        this.animation(this.intervalCreate);
         this.wind();
+        this.restart(this.intervalCreate)
+    }
+    restart(downfallSpeed){
+        window.addEventListener("focus",e=>{
+            document.querySelector(".objectW")?document.querySelectorAll(".objectW").forEach(e=>e.remove()):0
+            this.animation(downfallSpeed);
+            this.wind();
+        })
     }
     animation(interval){
         let loop = setInterval(()=>{
@@ -16,14 +24,14 @@ class Controller{
              elemnt.setAttributeNode(att)
              document.body.appendChild(elemnt)
              new Snow(elemnt)
-             this.contAll>2?this.control(loop,this.intervalCreate):this.contAll++
+             this.contAll>10?this.control(loop,this.intervalCreate):this.contAll++
      },interval)
     }
     control(loop,timeout){
         clearInterval(loop)
-        contAll=0
+        this.contAll=0
         setTimeout(() => {
-            this.animation(this.downfallSpeed)
+            this.animation(this.intervalCreate)
         }, timeout);
     }
     wind(windDirection="left",yes=false){
