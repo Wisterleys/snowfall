@@ -3,6 +3,6 @@ body{
     transition: background 1s;
     animation: colors;
 }
-@keyframes colors{
+/* @keyframes colors{
 
-}
+} */
