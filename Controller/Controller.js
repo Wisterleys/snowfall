@@ -14,9 +14,10 @@ class Controller{
     }
     restart(){
         window.addEventListener("focus",e=>{
-            document.querySelector(".objectW")?document.querySelectorAll(".objectW").forEach(e=>e.remove()):0
+            this.cleanAll()
         })
     }
+    cleanAll(){document.querySelector(".objectW")?document.querySelectorAll(".objectW").forEach(e=>e.remove()):0}
     createElement(){
         let elemnt=document.createElement("div")
         let att =document.createAttribute("class")
@@ -29,6 +30,7 @@ class Controller{
         setInterval(()=>{
              new Snow(this.createElement(),removeSnowDuration,body,Math.random() * (95 - 1) + 1,0)
              wind.wind&&!this.windStop?new Snow(this.createElement(),removeSnowDuration,body,wind.windDirection==1?1:95,Math.random() * (95 - 1) + 1):0
+             document.querySelectorAll(".objectW").length>200?this.cleanAll():0
      },interval)
     }
     
