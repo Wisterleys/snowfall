@@ -6,7 +6,7 @@ const CONFIG={
     removeSnowDuration:8000,// Milliseconds
     windConf:{
         wind:true,
-        windDirection:-1,// 1 = left || -1 = right
+        windDirection:1,// 1 = left || -1 = right
         windSpeed:3
     }
 }
