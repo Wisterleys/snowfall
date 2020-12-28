@@ -27,7 +27,7 @@ class Snow{
         let cont=this.element.offsetTop;
        let loop = setInterval(() => {
             this.element.style.top=cont+"px"
-            this.element.offsetLeft+this.element.offsetWidth+1>=this.body[0]?this.removeEl():0
+            this.element.offsetLeft+this.element.offsetWidth+1>=this.body[0]-10?this.removeEl():0
             this.element.offsetLeft<1?this.removeEl():0
             if(this.element.offsetTop+this.element.offsetHeight+1>this.body[1]){
                 clearInterval(loop)
