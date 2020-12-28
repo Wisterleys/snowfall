@@ -18,7 +18,7 @@ class Snow{
         this.loop(this.interval,this.removeSnowDuration)
     }
     receives(){
-        this.element.style=`position:absolute;top:${this.y}%;left:${this.x}%;background:${this.color};width:8px;height:8px;border-radius:360px;`
+        this.element.style=`position:absolute;top:${this.y}%;left:${this.x}%;background:${this.color};width:4px;height:4px;border-radius:360px;`
     }
     removeEl(){
         this.element.remove()
