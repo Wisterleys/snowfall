@@ -1,7 +1,7 @@
 //CONFIGURAÇÃO
 const CONFIG={
     choice:"neve",//Only snow has been mounted so far
-    intervalCreate:1500,// Milliseconds
+    intervalCreate:1000,// Milliseconds
     creationPause:10000,// Milliseconds
     removeSnowDuration:8000,// Milliseconds
     windConf:{
