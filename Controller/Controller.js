@@ -46,7 +46,10 @@ class Controller{
                 })
             }
             cont++;
-            if(cont>1000){clearInterval(loop);this.windStop=true;cont=0;setTimeout(()=>{this.wind(this.windConf);this.windStop=false;},10000)}
+            if(cont>1000){
+                clearInterval(loop);
+                this.windStop=true;
+                setTimeout(()=>{this.wind(this.windConf);this.windStop=false;cont=0;},10000)}
             }, 10);
         }
     }
