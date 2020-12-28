@@ -1,3 +1,8 @@
 body{
-    background-color: black;
+    background-image: linear-gradient(to right, rgb(190, 165, 165), rgb(2, 16, 139), rgb(2, 10, 83));
+    transition: background 1s;
+    animation: colors;
+}
+@keyframes colors{
+
 }
