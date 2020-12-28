@@ -30,7 +30,7 @@ class Controller{
         setInterval(()=>{
              new Snow(this.createElement(),removeSnowDuration,body,Math.random() * (95 - 1) + 1,0)
              wind.wind&&!this.windStop?new Snow(this.createElement(),removeSnowDuration,body,wind.windDirection==1?1:95,Math.random() * (95 - 1) + 1):0
-             document.querySelectorAll(".objectW").length>50?this.cleanAll():0
+             document.querySelectorAll(".objectW").length>30?this.cleanAll():0
      },interval)
     }
     
