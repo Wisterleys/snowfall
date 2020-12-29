@@ -52,7 +52,7 @@ class Controller{
             let cont=0;
             
             let direction =this.windConf.windDirection=this.toggle?this.directionWindToggle(this.WindToggle):conf.windDirection
-            console.log(this.windConf.windDirection,this.WindToggle)
+            
             let loop = setInterval(() => {
                 if(document.querySelectorAll(".objectW").length){
                 document.querySelectorAll(".objectW").forEach(e=>{
