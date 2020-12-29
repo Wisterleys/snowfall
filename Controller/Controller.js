@@ -7,6 +7,7 @@ class Controller{
         this.downfallSpeed=10
         this.windStop=false
         this.windConf=conf.windConf
+        this.WindToggle=1
         //Methods
         this.animation(this.intervalCreate,this.removeSnowDuration,this.body,this.windConf);
         this.wind(this.windConf);
@@ -17,7 +18,16 @@ class Controller{
             this.cleanAll()
         })
     }
-    cleanAll(){document.querySelector(".objectW")?document.querySelectorAll(".objectW").forEach(e=>e.remove()):0}
+    cleanAll(overload=false){
+        if(document.querySelector(".objectW")){
+            for(let l=document.querySelectorAll(".objectW").length-1;l>20;l--){
+                document.querySelectorAll(".objectW")[l].remove()
+            }
+
+        }
+        this.intervalCreate<1500&&overload?console.log("creation of snowflakes with overload. Please set to 1500 milliseconds"):0
+           
+    }
     createElement(){
         let elemnt=document.createElement("div")
         let att =document.createAttribute("class")
@@ -30,14 +40,16 @@ class Controller{
         setInterval(()=>{
              new Snow(this.createElement(),removeSnowDuration,body,Math.random() * (95 - 1) + 1,0)
              wind.wind&&!this.windStop?new Snow(this.createElement(),removeSnowDuration,body,wind.windDirection==1?1:95,Math.random() * (95 - 1) + 1):0
-             document.querySelectorAll(".objectW").length>30?this.cleanAll():0
+             document.querySelectorAll(".objectW").length>30?this.cleanAll(true):0
      },interval)
     }
-    
+    directionWindToggle(){
+        return this.WindToggle<0?this.WindToggle=1:this.WindToggle=-1
+    }
     wind(conf){
         if(conf.wind){
             let cont=0;
-            let direction =conf.windDirection
+            let direction =conf.windDirection=="toggle"?this.directionWindToggle():conf.windDirection
             let loop = setInterval(() => {
                 if(document.querySelectorAll(".objectW").length){
                 document.querySelectorAll(".objectW").forEach(e=>{
