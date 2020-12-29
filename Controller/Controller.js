@@ -7,6 +7,7 @@ class Controller{
         this.downfallSpeed=10
         this.windStop=false
         this.windConf=conf.windConf
+        this.toggle= conf.windConf.windDirection=="toggle"?true:false
         this.WindToggle=1
         //Methods
         this.animation(this.intervalCreate,this.removeSnowDuration,this.body,this.windConf);
@@ -39,17 +40,19 @@ class Controller{
     animation(interval,removeSnowDuration=false,body=false,wind=false){
         setInterval(()=>{
              new Snow(this.createElement(),removeSnowDuration,body,Math.random() * (95 - 1) + 1,0)
-             wind.wind&&!this.windStop?new Snow(this.createElement(),removeSnowDuration,body,wind.windDirection==1?1:95,Math.random() * (95 - 1) + 1):0
+             wind.wind&&!this.windStop?new Snow(this.createElement(),removeSnowDuration,body,this.windConf.windDirection==1?1:95,Math.random() * (95 - 1) + 1):0
              document.querySelectorAll(".objectW").length>30?this.cleanAll(true):0
      },interval)
     }
-    directionWindToggle(){
-        return this.WindToggle<0?this.WindToggle=1:this.WindToggle=-1
+    directionWindToggle(WindToggle){
+        return WindToggle<0?this.WindToggle=1:this.WindToggle=-1
     }
     wind(conf){
         if(conf.wind){
             let cont=0;
-            let direction =conf.windDirection=="toggle"?this.directionWindToggle():conf.windDirection
+            
+            let direction =this.windConf.windDirection=this.toggle?this.directionWindToggle(this.WindToggle):conf.windDirection
+            console.log(this.windConf.windDirection,this.WindToggle)
             let loop = setInterval(() => {
                 if(document.querySelectorAll(".objectW").length){
                 document.querySelectorAll(".objectW").forEach(e=>{
